@@ -10,9 +10,6 @@ class Solution(BaseSolution):
     def __init__(self, q_num):
         super().__init__(q_num)
         self.commands = []
-        self.depth = 0
-        self.hor = 0
-        self.aim = 0
 
     def load(self):
         with open(self.filename, 'r') as f:
@@ -30,6 +27,7 @@ class Solution(BaseSolution):
     def solve_part_two(self):
         self.depth = 0
         self.hor = 0
+        self.aim = 0
         for command in self.commands:
             self.execute_command_2(command)
         return self.depth*self.hor
