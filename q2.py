@@ -1,14 +1,15 @@
 from utils.base_solution import BaseSolution
 
 Q_NUM = 2
+YEAR = 2021
 
 class Solution(BaseSolution):
     '''
     down x INCREASES depth
     up x DECREASES depth
     '''
-    def __init__(self, q_num):
-        super().__init__(q_num)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.commands = []
 
     def load(self):
@@ -62,7 +63,7 @@ class Solution(BaseSolution):
             print('Invalid command')
 
 
-sol = Solution(Q_NUM)
+sol = Solution(Q_NUM, YEAR)
 sol.load()
 print(sol.solve())
 print(sol.solve_part_two())

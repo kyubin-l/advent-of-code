@@ -1,6 +1,7 @@
 from utils.base_solution import BaseSolution
 
 Q_NUM = 3
+YEAR = 2021
 
 
 def bin_to_dec(bin):
@@ -15,8 +16,8 @@ def bin_to_dec(bin):
 
 
 class Solution(BaseSolution):
-    def __init__(self, q_num):
-        super().__init__(q_num)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.nums = []
 
     def load(self):
@@ -30,18 +31,17 @@ class Solution(BaseSolution):
         digit_sum = []
         for digit in range(len(self.nums[0])):
             digit_sum.append(sum(num[digit] for num in self.nums))
-        self.gamma = ['1' if val > len(self.nums)//2 else '0' for val in digit_sum]
-        self.epsilon = ['1' if val <= len(self.nums)//2 else '0' for val in digit_sum]
+        gamma_list = ['1' if val > len(self.nums)//2 else '0' for val in digit_sum]
+        epsilon_list = ['1' if val <= len(self.nums)//2 else '0' for val in digit_sum]
 
-        self.gamma = ''.join(self.gamma)
-        self.epsilon = ''.join(self.epsilon)
+        gamma = ''.join(gamma_list)
+        epsilon = ''.join(epsilon_list)
 
-        power_consumption = bin_to_dec(self.gamma) * bin_to_dec(self.epsilon)
-        return self.gamma, self.epsilon, power_consumption
-
-    
+        power_consumption = bin_to_dec(gamma) * bin_to_dec(epsilon)
+        return gamma, epsilon, power_consumption
 
 
-sol = Solution(Q_NUM)
+
+sol = Solution(Q_NUM, YEAR)
 sol.load()
 print(sol.solve())

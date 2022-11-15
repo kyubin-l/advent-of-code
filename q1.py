@@ -1,10 +1,11 @@
 from utils.base_solution import BaseSolution
 
 Q_NUM = 1
+YEAR = 2021
 
 class Solution(BaseSolution):
-    def __init__(self, q_num):
-        super().__init__(q_num)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.depths = []
 
     def load(self):
@@ -29,7 +30,7 @@ class Solution(BaseSolution):
         return num_increases
         
     
-sol = Solution(Q_NUM)
+sol = Solution(Q_NUM, YEAR)
 sol.load()
 print(sol.solve())
 print(sol.solve_part_two())

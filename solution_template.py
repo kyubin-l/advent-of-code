@@ -1,10 +1,11 @@
 from utils.base_solution import BaseSolution
 
-Q_NUM = 2 
+Q_NUM = 1
+YEAR = 1
 
 class Solution(BaseSolution):
-    def __init__(self, q_num):
-        super().__init__(q_num)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
     def load(self):
