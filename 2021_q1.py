@@ -1,6 +1,5 @@
 from utils.base_solution import BaseSolution
 
-
 Q_NUM = 1
 YEAR = 2021
 
@@ -31,9 +30,10 @@ class Solution(BaseSolution):
                 num_increases += 1
         return num_increases
         
-    
-sol = Solution(Q_NUM, YEAR)
-sol.load()
-print(sol.solve())
-print(sol.solve_part_two())
+        
+if __name__ == '__main__':
+    sol = Solution(Q_NUM, YEAR)
+    sol.load()
+    print(sol.solve())
+    print(sol.solve_part_two())
 

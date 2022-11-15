@@ -1,6 +1,5 @@
 from utils.base_solution import BaseSolution
 
-
 Q_NUM = 3
 YEAR = 2021
 
@@ -42,7 +41,7 @@ class Solution(BaseSolution):
         return gamma, epsilon, power_consumption
 
 
-
-sol = Solution(Q_NUM, YEAR)
-sol.load()
-print(sol.solve())
+if __name__ == '__main__':
+    sol = Solution(Q_NUM, YEAR)
+    sol.load()
+    print(sol.solve())

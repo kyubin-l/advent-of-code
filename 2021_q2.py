@@ -1,6 +1,5 @@
 from utils.base_solution import BaseSolution
 
-
 Q_NUM = 2
 YEAR = 2021
 
@@ -65,7 +64,8 @@ class Solution(BaseSolution):
             print('Invalid command')
 
 
-sol = Solution(Q_NUM, YEAR)
-sol.load()
-print(sol.solve())
-print(sol.solve_part_two())
+if __name__ == '__main__':
+    sol = Solution(Q_NUM, YEAR)
+    sol.load()
+    print(sol.solve())
+    print(sol.solve_part_two())
