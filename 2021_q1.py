@@ -1,7 +1,9 @@
 from utils.base_solution import BaseSolution
 
+
 Q_NUM = 1
 YEAR = 2021
+
 
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):

@@ -1,5 +1,6 @@
 from utils.base_solution import BaseSolution
 
+
 Q_NUM = 1
 YEAR = 1
 

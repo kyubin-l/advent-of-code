@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 
+
 DIR = Path(__file__).parent
 
 class BaseSolution(ABC):
