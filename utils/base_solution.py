@@ -12,6 +12,6 @@ class BaseSolution(ABC):
     def load(self):
         pass
 
-    @abstractmethod
-    def solve(self):
-        pass
+    # @abstractmethod
+    # def solve(self):
+    #     pass

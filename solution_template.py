@@ -10,9 +10,13 @@ class Solution(BaseSolution):
     def load(self):
         return super().load()
 
-    def solve(self):
-        return super().solve()
+    def solve_part_one(self):
+        pass
+
+    def solve_part_two(self):
+        pass
+    
 
 
 if __name__ == '__main__':
-    sol = Solution(Q_NUM)
+    sol = Solution(Q_NUM, YEAR)
