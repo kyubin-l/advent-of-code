@@ -64,7 +64,7 @@ class Grid:
         x_coords = list(range(p1.x, p2.x+x_dir, x_dir))
         y_coords = list(range(p1.y, p2.y+y_dir, y_dir))
 
-        for x, y, in zip(x_coords, y_coords):
+        for x, y in zip(x_coords, y_coords):
             self.grid[x][y] += 1
 
 
