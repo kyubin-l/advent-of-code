@@ -17,6 +17,5 @@ class Solution(BaseSolution):
         pass
     
 
-
 if __name__ == '__main__':
     sol = Solution(Q_NUM, YEAR)
