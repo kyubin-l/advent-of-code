@@ -18,16 +18,16 @@ class Solution(BaseSolution):
         l = len(self.positions)
         mid_index = l // 2
         if l & 2 == 0:
-            m1, m2 = self.positions[mid_index - 1], self.positions[mid_index]
+            m1, m2 = self.positions[mid_index-1], self.positions[mid_index]
             if m1 == m2:
                 m = m1
             elif (m2 - m1) & 2 == 0:
                 m = (m2 + m1) // 2
             else:
                 if self.positions.count(m1) > self.positions.count(m2):
-                    m = m1
+                    m = (m1 + m2) // 2
                 else:
-                    m = m2
+                    m = (m1 + m2) // 2 + 1
         else:
             m = self.positions[mid_index]
 
@@ -54,12 +54,11 @@ class Solution(BaseSolution):
                 fuel += i
             return fuel
 
-
-        i = len(self.positions) // 2
-        m = self.positions[i]
+        m = self.positions[len(self.positions)//2]
         r_tot = 0
         l_tot = 0
         last_move = None
+        
         while True:
             r = m + 1
             l = m - 1
@@ -86,9 +85,7 @@ class Solution(BaseSolution):
             if r_tot > 0:
                 m += 1
                 if last_move == 'l':
-                    if r_tot > l_tot_prev:
-                        pass
-                    else:
+                    if r_tot < l_tot_prev:
                         m -= 1
                     break
                 last_move = 'r'
@@ -97,7 +94,6 @@ class Solution(BaseSolution):
                 last_move = 'l'
 
         total = 0
-
         for pos in self.positions:
             total += calc_fuel(m, pos)
 
