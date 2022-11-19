@@ -8,6 +8,7 @@ class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+
     def load(self):
         self.data = []
         with open(self.filename) as f:
@@ -15,20 +16,9 @@ class Solution(BaseSolution):
                 line = line.rstrip()
                 self.data.append(list(map(int, [*line])))
 
-    def add_zeros(self):
-        data = np.array(self.data)
-        N = len(data)
-        add_col = np.zeros(N)
-        add_col[:] = float('inf')
-        add_row = np.zeros(N+2)
-        add_row[:] = float('inf')
-
-        data = np.c_[add_col, data, add_col]
-        data = np.r_[[add_row], data, [add_row]]
-        return data
 
     def solve_part_one(self):
-        data = self.add_zeros()
+        data = self.pad_data()
         points = 0
         self.low_points = []
 
@@ -39,11 +29,24 @@ class Solution(BaseSolution):
                 if (data[i][j] < data[i+1][j] and data[i][j] < data[i-1][j]):
                     points += data[i][j] + 1
                     self.low_points.append((i, j))
-        
         return points
+
+
+    def pad_data(self):
+        data = np.array(self.data)
+        N = len(data)
+        add_col = np.zeros(N)
+        add_col[:] = float('inf')
+        add_row = np.zeros(N+2)
+        add_row[:] = float('inf')
+
+        data = np.c_[add_col, data, add_col]
+        data = np.r_[[add_row], data, [add_row]]
+        return data
     
+
     def solve_part_two(self):
-        data = self.add_zeros()
+        data = self.pad_data()
 
         def calculate_basin_size(i, j, basin):
             check = [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]
