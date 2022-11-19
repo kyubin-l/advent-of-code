@@ -17,6 +17,19 @@ class Solution(BaseSolution):
                 self.data.append(list(map(int, [*line])))
 
 
+    def pad_data(self):
+        data = np.array(self.data)
+        N = len(data)
+        add_col = np.zeros(N)
+        add_col[:] = float('inf')
+        add_row = np.zeros(N+2)
+        add_row[:] = float('inf')
+
+        data = np.c_[add_col, data, add_col]
+        data = np.r_[[add_row], data, [add_row]]
+        return data
+
+
     def solve_part_one(self):
         data = self.pad_data()
         points = 0
@@ -31,19 +44,6 @@ class Solution(BaseSolution):
                     self.low_points.append((i, j))
         return points
 
-
-    def pad_data(self):
-        data = np.array(self.data)
-        N = len(data)
-        add_col = np.zeros(N)
-        add_col[:] = float('inf')
-        add_row = np.zeros(N+2)
-        add_row[:] = float('inf')
-
-        data = np.c_[add_col, data, add_col]
-        data = np.r_[[add_row], data, [add_row]]
-        return data
-    
 
     def solve_part_two(self):
         data = self.pad_data()
