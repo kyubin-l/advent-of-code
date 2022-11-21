@@ -14,6 +14,12 @@ class Solution(BaseSolution):
                 self.lines.append(line.rstrip())
 
     def solve_part_one(self):
+        """
+        Using a First-in, Last-out stack. Whenever an opening bracket is encountered,
+        the corresponding closing bracket is added to the stack. If a closing bracket
+        is encoutered, check latest element in stack, see if it matches. If it matches,
+        remove element and keep iterating through string. 
+        """
         brackets = {
             '(': ')',
             '[': ']',
