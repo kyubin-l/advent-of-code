@@ -59,16 +59,16 @@ class Solution(BaseSolution):
 
         scores = []
         for pattern in self.lines:
-            skip = False
+            invalid = False
             closing = []
             for sym in pattern:
                 if sym in brackets.keys():
                     closing.append(brackets[sym])
                 else:
                     if (not closing) or (sym != closing.pop()):
-                        skip = True
+                        invalid = True
                         break
-            if not skip:    
+            if not invalid:    
                 closing.reverse()
                 score = 0
                 for sym in closing:
