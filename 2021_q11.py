@@ -46,11 +46,9 @@ class Solution(BaseSolution):
             extra_flashes = 0
             for point in get_neighbors(i, j):
                 y, x = point[0], point[1]
-                if not in_bound(y, x):
+                if (not in_bound(y, x)) or flashed[y][x]:
                     continue
                 else:
-                    if flashed[y][x] == True:
-                        continue
                     self.grid[y][x] += 1
                     if self.grid[y][x] == 10:
                         extra_flashes += 1
@@ -75,11 +73,9 @@ class Solution(BaseSolution):
 
             return num_flashes
 
-        total_flashes = 0
-        grid_size = len(self.grid) * len(self.grid[0])
 
-    
         if part_1:
+            total_flashes = 0
             for _ in range(num_steps):
                 num_flashes = step()
                 total_flashes += num_flashes
@@ -87,14 +83,16 @@ class Solution(BaseSolution):
             return total_flashes
             
         # Part 2
-        i = 0
-        while True:
-            num_flashes = step()
-            i += 1
-            if num_flashes == grid_size:
-                self.print_grid()
-                print(f'All octopuses will flash at step {i}')
-                return i
+        else:
+            i = 0
+            grid_size = len(self.grid) * len(self.grid[0])
+            while True:
+                num_flashes = step()
+                i += 1
+                if num_flashes == grid_size:
+                    self.print_grid()
+                    print(f'All octopuses will flash at step {i}')
+                    return i
 
     def solve_part_two(self):
         self.load()
