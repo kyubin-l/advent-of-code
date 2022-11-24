@@ -1,5 +1,4 @@
 from utils.base_solution import BaseSolution
-import string
 
 Q_NUM = 12
 YEAR = 2021
@@ -11,12 +10,6 @@ class Cave:
         self.large = large
         self.connected_caves = set()
         Cave.caves[self.name] = self
-
-    def visit(self, name: str):
-        return Cave.caves[name]
-
-    def __str__(self) -> str:
-        return self.name
 
 
 class Solution(BaseSolution):
