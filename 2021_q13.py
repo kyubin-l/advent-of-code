@@ -29,14 +29,14 @@ class Solution(BaseSolution):
 
     def solve_part_one(self):
         def fold_x(val):
-            def flip_x(point):
+            def mirror_x(point):
                 new_x = 2 * val - point[0]
                 return (new_x, point[1])
             
             top  = list(filter(lambda point: point[0] < val, self.points))
             bottom =  list(filter(lambda point: point[0] > val, self.points))
-            bottom_flipped = list(map(flip_x, bottom))
-            new = list(set(top + bottom_flipped))
+            bottom_mirrored = list(map(mirror_x, bottom))
+            new = list(set(top + bottom_mirrored))
             return new
                 
         fold = self.commands[0]
@@ -51,7 +51,7 @@ class Solution(BaseSolution):
                 x = 0
             else:
                 x = 1
-            def flip_axis(point):
+            def mirror_along_axis(point):
                 new_val = 2 * val - point[x]
                 if not x:
                     return (new_val, point[1])
@@ -60,8 +60,8 @@ class Solution(BaseSolution):
             
             top  = list(filter(lambda point: point[x] < val, self.points))
             bottom =  list(filter(lambda point: point[x] > val, self.points))
-            bottom_flipped = list(map(flip_axis, bottom))
-            new = list(set(top + bottom_flipped))
+            bottom_mirrored = list(map(mirror_along_axis, bottom))
+            new = list(set(top + bottom_mirrored))
             return new
 
         for command in self.commands:
