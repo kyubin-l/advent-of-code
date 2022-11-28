@@ -4,6 +4,7 @@ import numpy as np
 Q_NUM = 13
 YEAR = 2021
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
