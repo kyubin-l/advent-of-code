@@ -97,7 +97,7 @@ class Solution(BaseSolution):
             pat = poly[i:i+2]
             res = mutate(pat, step_count)
             total = add_dicts(total, res)
-            
+
         return max(total.values()) - min(total.values())
                     
                     
