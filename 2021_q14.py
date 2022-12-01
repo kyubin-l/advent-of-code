@@ -50,45 +50,59 @@ class Solution(BaseSolution):
             poly = step(poly)
             
         return most_frequent(poly) - least_frequent(poly)
+        # return poly
 
     def solve_part_two(self, step_count):
         """
         Find out how much each pair will grow in n number of steps
+        Keep track of additional letters generated in dictionary.
         """
-        poly = self.starting_string
         sol.load()
+        poly = self.starting_string
         pairs = self.insertions
-
-        total_letters = defaultdict(int)
-
-
-        @lru_cache
-        def mutate(pattern, num):
-            # print(total_letters)
-            if pattern not in pairs:
-                return
-
-
-            mutation = pairs[pattern]
-            let = mutation[1]
-            total_letters[let] += 1
-            if num == 1:
-                return
-
-            p1, p2 = mutation[:2], mutation[1:]
-            mutate(p1, num-1)
-            mutate(p2, num-1)
-
         
-        for i in tqdm(range(len(poly)-1)):
-            mutate(poly[i:i+2], step_count)
-
-        print(total_letters)
-
-
-
+        def add_dicts(d1: defaultdict, d2: defaultdict, d3: defaultdict = defaultdict(int)):
+            for key in d2.keys():
+                d1[key] += d2[key]
+            for key in d3.keys():
+                d1[key] += d3[key]
+            return d1
+        
+        @lru_cache(maxsize=None)
+        def mutate(pat: str, n: int):
+            """
+            Gives how many extra letters a pair of letters generates, in n
+            number of steps
+            e.g. if AB -> ACB, mutate('AB', 1) returns {'C': 1}
+            """
+            d = defaultdict(int)
+            
+            if pat not in pairs:
+                return d
+            
+            mut = pairs[pat]
+            let = mut[1]
+            d[let] += 1
+            
+            if n == 1:
+                return d
+            
+            return add_dicts(d, mutate(mut[:2], n-1), mutate(mut[1:], n-1))
+        
+        total = defaultdict(int)
+        for let in poly:
+            total[let] += 1
+        
+        for i in range(len(poly)-1):
+            pat = poly[i:i+2]
+            res = mutate(pat, step_count)
+            total = add_dicts(total, res)
+            
+        return max(total.values()) - min(total.values())
+                    
+                    
 if __name__ == '__main__':
     sol = Solution(Q_NUM, YEAR)
     sol.load()
-    # print(sol.solve_part_one(40))
+    # print(sol.solve_part_one(10))
     print(sol.solve_part_two(40))
