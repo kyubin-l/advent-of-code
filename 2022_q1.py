@@ -24,7 +24,6 @@ class Solution(BaseSolution):
         sums = []
         for elf in cals:
             sums.append(sum(elf))
-
         return max(sums)
 
     def solve_part_two(self):
@@ -33,7 +32,6 @@ class Solution(BaseSolution):
         for elf in cals:
             sums.append(sum(elf))
         sums.sort()
-
         return sums[-1] + sums[-2] + sums[-3]
     
 
