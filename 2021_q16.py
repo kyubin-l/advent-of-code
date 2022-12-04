@@ -8,8 +8,9 @@ class Solution(BaseSolution):
         super().__init__(*args, **kwargs)
 
     def load(self):
-        return super().load()
+        return
 
+                
     def solve_part_one(self):
         pass
 
@@ -19,3 +20,5 @@ class Solution(BaseSolution):
 
 if __name__ == '__main__':
     sol = Solution(Q_NUM, YEAR)
+    sol.load()
+    print(sol.pairs)
