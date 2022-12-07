@@ -25,7 +25,7 @@ class Solution(BaseSolution):
                     stacks_raw.append([*line])
                 else:
                     numbers = [int(val) for val in re.findall(r"\d+", line)]
-                    movement = Movement(x=numbers[0], start = numbers[1], end = numbers[2])
+                    movement = Movement(x=numbers[0], start=numbers[1], end=numbers[2])
                     self.tasks.append(movement)
 
         self.stacks = {}
