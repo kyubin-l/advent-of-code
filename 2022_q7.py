@@ -10,7 +10,7 @@ class Node:
         self.name = name
         self.children = []
         self.parent = parent
-        self.filesize = filesize        # 0 if it's a directory, otherwise the size
+        self.filesize = filesize        # 0 if it's a directory, otherwise the filesize
         Node.nodes.append(self)
 
     def add_children(self, obj):
