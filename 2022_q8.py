@@ -1,6 +1,5 @@
 from utils.base_solution import BaseSolution
 import copy
-from collections import namedtuple
 
 Q_NUM = 8
 YEAR = 2022
@@ -30,16 +29,16 @@ class Solution(BaseSolution):
             for c in range(C):
                 if r == 0 or c == 0 or r == R - 1 or c == C - 1:
                     visible += 1
-                else:
-                    height = forest[r][c]
-                    dirs = [
-                        forest[r][:c],
-                        forest[r][c + 1:],
-                        [forest[row][c] for row in range(r)],
-                        [forest[row][c] for row in range(r + 1, R)]
-                    ]
-                    if any([visible_in_direction(height, dir) for dir in dirs]):
-                        visible += 1
+                    continue
+                height = forest[r][c]
+                dirs = [
+                    forest[r][:c],
+                    forest[r][c + 1:],
+                    [forest[row][c] for row in range(r)],
+                    [forest[row][c] for row in range(r + 1, R)]
+                ]
+                if any([visible_in_direction(height, dir) for dir in dirs]):
+                    visible += 1
 
         return visible
 
@@ -63,19 +62,18 @@ class Solution(BaseSolution):
             for c in range(C):
                 if r == 0 or c == 0 or r == R - 1 or c == C - 1:
                     continue
-                else:
-                    height = forest[r][c]
-                    dirs = [
-                        forest[r][c - 1::-1],
-                        forest[r][c + 1:],
-                        [forest[row][c] for row in range(r - 1, -1, -1)],
-                        [forest[row][c] for row in range(r + 1, R)]
-                    ]
-                    new_visibility = 1
-                    for dir in dirs:
-                        new_visibility *= calculate_visibility(height, dir)
+                height = forest[r][c]
+                dirs = [
+                    forest[r][c - 1::-1],
+                    forest[r][c + 1:],
+                    [forest[row][c] for row in range(r - 1, -1, -1)],
+                    [forest[row][c] for row in range(r + 1, R)]
+                ]
+                new_visibility = 1
+                for dir in dirs:
+                    new_visibility *= calculate_visibility(height, dir)
 
-                    visibility = max(visibility, new_visibility)
+                visibility = max(visibility, new_visibility)
 
         return visibility
     
