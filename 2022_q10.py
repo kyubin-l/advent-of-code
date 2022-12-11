@@ -34,7 +34,7 @@ class Solution(BaseSolution):
                 
                 
         for val in tasks:
-            # Keeping values in x during that cycle, index 0 -> 1st cycle
+            # Keeping tuples of (start, end) of each cycle
             x.append((X, X))
             # If val == 0, it's a noop, so just continue
             if val:
@@ -51,14 +51,15 @@ class Solution(BaseSolution):
         
         CRT = []
         row = []
-        x = self.x # x holds values at end of cycle, not during
+        x = self.x
 
         for i in range(len(x)):
-            X = x[i][0]
+            X = x[i][0]     # Becomes position of sprite
             if len(row) == 40:
                 CRT.append(row)
                 row = []
-
+                
+            # len(row) is the position where the next signal will be drawn
             if len(row) in [X-1, X, X+1]:
                 row.append('#')
             else:
