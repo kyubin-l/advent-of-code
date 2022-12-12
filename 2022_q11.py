@@ -40,12 +40,10 @@ class Monkey:
     def throw_all(self, monkey_list, part=2):
         while self.levels:
             level = self.levels.pop(0)
-            if self.number != 6:
-                new_level = self.operate(level)
-            else:
-                new_level = level
             if part == 1:
-                new_level = int(new_level/3)
+                new_level = int(level/3)
+            else:
+                new_level = level % 9_699_690 if level > 10_000_000 else level
             if new_level % self.test_val == 0:
                 monkey = self.get_monkey(monkey_list, self.test_true)
                 monkey.levels.append(new_level)
@@ -91,7 +89,6 @@ class Solution(BaseSolution):
         for _ in range(20):
             for monkey in monkey_list:
                 monkey.throw_all(monkey_list, part=1)
-            print([monkey.inspected for monkey in monkey_list])
         
         inspected = [monkey.inspected for monkey in monkey_list]
         inspected.sort()
@@ -104,13 +101,15 @@ class Solution(BaseSolution):
         """
         Main issue is the old * old slowing things down a lot.
             - Need to find new method to keep worry levels low
+            - Since the value is not divided by 3 anymore, surely there must be 
+            some case of repetition
             - 
 
         
         """
         monkey_list = copy.deepcopy(self.monkey_list)
 
-        for _ in range(10000):
+        for _ in range(10_000):
             for monkey in monkey_list:
                 monkey.throw_all(monkey_list, part=2)
         
