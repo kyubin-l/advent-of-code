@@ -19,5 +19,6 @@ class Solution(BaseSolution):
 
 if __name__ == '__main__':
     sol = Solution(Q_NUM, YEAR)
+    sol.load()
     print(sol.solve_part_one())
     print(sol.solve_part_two())
