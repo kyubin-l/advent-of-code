@@ -24,12 +24,12 @@ class Monkey:
         self.test_false = test_false
         self.inspected = 0
     
-    def __str__(self) -> str:
-        return f'number: {self.number}, levels: {self.levels}'
+    def __repr__(self) -> str:
+        return f'(no: {self.number}, lvls: {self.levels}, expr:{self.operation})'
 
 
-    @classmethod
-    def get_monkey(cls, monkey_list, number):
+    @staticmethod
+    def get_monkey(monkey_list, number):
         for monkey in monkey_list:
             if monkey.number == number:
                 return monkey
@@ -40,10 +40,11 @@ class Monkey:
     def throw_all(self, monkey_list, part=2):
         while self.levels:
             level = self.levels.pop(0)
+            level = self.operate(level)
             if part == 1:
                 new_level = int(level/3)
             else:
-                new_level = level % 9_699_690 if level > 10_000_000 else level
+                new_level = level % 9_699_690
             if new_level % self.test_val == 0:
                 monkey = self.get_monkey(monkey_list, self.test_true)
                 monkey.levels.append(new_level)
@@ -51,7 +52,6 @@ class Monkey:
                 monkey = self.get_monkey(monkey_list, self.test_false)
                 monkey.levels.append(new_level)
             self.inspected += 1
-
 
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
@@ -99,13 +99,16 @@ class Solution(BaseSolution):
 
     def solve_part_two(self):
         """
+        Old
         Main issue is the old * old slowing things down a lot.
             - Need to find new method to keep worry levels low
             - Since the value is not divided by 3 anymore, surely there must be 
             some case of repetition
-            - 
-
         
+        New sol:
+        Keep worry levels low without modifying the tests. On each operation,
+        only keep the remainder when divided by the greatest common divisor
+        of all the tests.
         """
         monkey_list = copy.deepcopy(self.monkey_list)
 
