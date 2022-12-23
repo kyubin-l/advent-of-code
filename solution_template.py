@@ -16,7 +16,7 @@ class Solution(BaseSolution):
     def solve_part_two(self):
         pass
     
-
+    
 if __name__ == '__main__':
     sol = Solution(Q_NUM, YEAR)
     sol.load()

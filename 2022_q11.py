@@ -1,6 +1,5 @@
 from utils.base_solution import BaseSolution
 import copy
-import heapq
 
 Q_NUM = 11
 YEAR = 2022
