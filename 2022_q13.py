@@ -27,18 +27,7 @@ def compare(left, right):
     else:
         return compare([left], right) if isinstance(left, int) else compare(left, [right])
     
-
-def bubbleSort(arr):
-    n = len(arr)
-    swapped = False
-    for i in range(n-1):
-        for j in range(0, n-i-1):
-            if not compare(arr[j], arr[j + 1]):
-                swapped = True
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-        if not swapped:
-            return
-
+    
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -84,15 +73,10 @@ class Solution(BaseSolution):
                 task = task[0]
             int_list.append(task)
         
-        print(int_list)
         int_list.sort()
-        print(int_list)
-        print(len(int_list))
         
         idx1 = int_list.index(2) + 1
         idx2 = int_list.index(6) + 1
-        print(idx1)
-        print(idx2)
         
         return idx1 * idx2
             
