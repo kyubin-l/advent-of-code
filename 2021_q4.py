@@ -38,7 +38,7 @@ class Solution(BaseSolution):
     def load(self):
         with open(self.filename) as f:
             line = f.readline()
-            self.nums = list(map(int, line.split(',')))
+            self.nums = list(map(int, line.split(",")))
             f.readline()
             board = []
             for line in f.readlines():
@@ -69,9 +69,9 @@ class Solution(BaseSolution):
                     last_won = board
                     last_val = random_num
         return last_won.calc_score(last_val)
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.solve_part_one())

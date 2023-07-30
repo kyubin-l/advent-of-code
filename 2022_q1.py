@@ -3,6 +3,7 @@ from utils.base_solution import BaseSolution
 Q_NUM = 1
 YEAR = 2022
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,9 +34,9 @@ class Solution(BaseSolution):
             sums.append(sum(elf))
         sums.sort()
         return sums[-1] + sums[-2] + sums[-3]
-    
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.solve_part_one())

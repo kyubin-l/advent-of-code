@@ -4,20 +4,16 @@ import itertools
 import copy
 import math
 
-Move = namedtuple('Move', 'dir x')
+Move = namedtuple("Move", "dir x")
 
 Q_NUM = 9
 YEAR = 2022
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.mapping = {
-            'R': (1, 0),
-            'L': (-1, 0),
-            'U': (0, 1),
-            'D': (0, -1)
-        }
+        self.mapping = {"R": (1, 0), "L": (-1, 0), "U": (0, 1), "D": (0, -1)}
 
     def load(self):
         self.moves = []
@@ -53,10 +49,10 @@ class Solution(BaseSolution):
             dir = self.mapping[move.dir]
             for _ in range(move.x):
                 H = (H[0] + dir[0], H[1] + dir[1])
-                if not touching(H, T): 
+                if not touching(H, T):
                     T = move_T(H, T)
                     visited.add(T)
-                
+
         return len(visited)
 
     def solve_part_two(self):
@@ -77,7 +73,7 @@ class Solution(BaseSolution):
             if abs(H[1] - T[1]) == 2:
                 return (H[0], (H[1] + T[1]) // 2)
 
-        rope = [(0, 0)] * 10    # index 0 is head, index 9 is tail
+        rope = [(0, 0)] * 10  # index 0 is head, index 9 is tail
 
         visited = set()
         visited.add(rope[-1])
@@ -89,18 +85,18 @@ class Solution(BaseSolution):
                 H = (H[0] + dir[0], H[1] + dir[1])
                 rope[0] = H
                 for i in range(1, len(rope)):
-                    if touching(rope[i-1], rope[i]):
+                    if touching(rope[i - 1], rope[i]):
                         continue
                     T = rope[i]
-                    T = move_T(rope[i-1], T)
+                    T = move_T(rope[i - 1], T)
                     rope[i] = T
                     if i == 9:
                         visited.add(T)
 
         return len(visited)
-    
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.solve_part_one())

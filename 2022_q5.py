@@ -8,6 +8,7 @@ Movement = namedtuple("Movement", "x, start, end")
 Q_NUM = 5
 YEAR = 2022
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,12 +31,14 @@ class Solution(BaseSolution):
 
         self.stacks = {}
         for i, val in enumerate(stacks_raw[-1]):
-            if val == ' ' or val == '\n':
+            if val == " " or val == "\n":
                 continue
             val = int(val)
-            self.stacks[val] = [stack[i] for stack in stacks_raw[:-1] if stack[i] != ' ']
+            self.stacks[val] = [
+                stack[i] for stack in stacks_raw[:-1] if stack[i] != " "
+            ]
             self.stacks[val].reverse()
-        
+
     def solve_part_one(self):
         tasks = copy.deepcopy(self.tasks)
         stacks = copy.deepcopy(self.stacks)
@@ -44,7 +47,7 @@ class Solution(BaseSolution):
             for _ in range(task.x):
                 stacks[task.end].append(stacks[task.start].pop())
 
-        return ''.join([stack[-1] for stack in stacks.values()])
+        return "".join([stack[-1] for stack in stacks.values()])
 
     def solve_part_two(self):
         tasks = copy.deepcopy(self.tasks)
@@ -56,10 +59,10 @@ class Solution(BaseSolution):
                 stash.appendleft(stacks[task.start].pop())
             stacks[task.end].extend(stash)
 
-        return ''.join([stack[-1] for stack in stacks.values()])
+        return "".join([stack[-1] for stack in stacks.values()])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.stacks)

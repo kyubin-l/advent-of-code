@@ -3,6 +3,7 @@ from utils.base_solution import BaseSolution
 Q_NUM = 7
 YEAR = 2021
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -10,7 +11,7 @@ class Solution(BaseSolution):
     def load(self):
         with open(self.filename) as f:
             line = f.readline()
-            self.positions = list(map(int, line.split(',')))
+            self.positions = list(map(int, line.split(",")))
         return super().load()
 
     def solve_part_one(self):
@@ -18,7 +19,7 @@ class Solution(BaseSolution):
         l = len(self.positions)
         mid_index = l // 2
         if l & 2 == 0:
-            m1, m2 = self.positions[mid_index-1], self.positions[mid_index]
+            m1, m2 = self.positions[mid_index - 1], self.positions[mid_index]
             if m1 == m2:
                 m = m1
             elif (m2 - m1) & 2 == 0:
@@ -47,18 +48,19 @@ class Solution(BaseSolution):
 
         Positive number indicates that a move towards the right saves fuel
         """
+
         def calc_fuel(m, pos):
             d = abs(m - pos)
             fuel = 0
-            for i in range(1, d+1):
+            for i in range(1, d + 1):
                 fuel += i
             return fuel
 
-        m = self.positions[len(self.positions)//2]
+        m = self.positions[len(self.positions) // 2]
         r_tot = 0
         l_tot = 0
         last_move = None
-        
+
         while True:
             r = m + 1
             l = m - 1
@@ -70,37 +72,37 @@ class Solution(BaseSolution):
 
             for val in self.positions:
                 if r > val:
-                    r_tot -= (r - val)
+                    r_tot -= r - val
                 else:
                     r_tot += (val - r) + 1
-                
+
                 if val <= l:
                     l_tot += (l - val) + 1
                 else:
-                    l_tot -= (val - l)
-            
+                    l_tot -= val - l
+
             if (r_tot <= 0) and (l_tot <= 0):
                 break
 
             if r_tot > 0:
                 m += 1
-                if last_move == 'l':
+                if last_move == "l":
                     if r_tot < l_tot_prev:
                         m -= 1
                     break
-                last_move = 'r'
+                last_move = "r"
             else:
                 m -= 1
-                last_move = 'l'
+                last_move = "l"
 
         total = 0
         for pos in self.positions:
             total += calc_fuel(m, pos)
 
         return m, total
-    
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.solve_part_one())

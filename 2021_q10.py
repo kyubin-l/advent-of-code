@@ -3,6 +3,7 @@ from utils.base_solution import BaseSolution
 Q_NUM = 10
 YEAR = 2021
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,21 +19,16 @@ class Solution(BaseSolution):
         Using a First-in, Last-out stack. Whenever an opening bracket is encountered,
         the corresponding closing bracket is added to the stack. If a closing bracket
         is encoutered, check latest element in stack, see if it matches. If it matches,
-        remove element and keep iterating through string. 
+        remove element and keep iterating through string.
         """
         brackets = {
-            '(': ')',
-            '[': ']',
-            '{': '}',
-            '<': '>',
+            "(": ")",
+            "[": "]",
+            "{": "}",
+            "<": ">",
         }
 
-        points = {
-            ')': 3,
-            ']': 57,
-            '}': 1197,
-            '>': 25137
-        }
+        points = {")": 3, "]": 57, "}": 1197, ">": 25137}
 
         total_points = 0
 
@@ -44,24 +40,18 @@ class Solution(BaseSolution):
                 else:
                     if (not closing) or (sym != closing.pop()):
                         total_points += points[sym]
-                        break    
+                        break
         return total_points
-        
 
     def solve_part_two(self):
         brackets = {
-            '(': ')',
-            '[': ']',
-            '{': '}',
-            '<': '>',
+            "(": ")",
+            "[": "]",
+            "{": "}",
+            "<": ">",
         }
 
-        points = {
-            ')': 1,
-            ']': 2,
-            '}': 3,
-            '>': 4
-        }
+        points = {")": 1, "]": 2, "}": 3, ">": 4}
 
         scores = []
         for pattern in self.lines:
@@ -74,7 +64,7 @@ class Solution(BaseSolution):
                     if (not closing) or (sym != closing.pop()):
                         invalid = True
                         break
-            if not invalid:    
+            if not invalid:
                 closing.reverse()
                 score = 0
                 for sym in closing:
@@ -84,10 +74,10 @@ class Solution(BaseSolution):
 
         scores.sort()
 
-        return scores[len(scores)//2]
-        
+        return scores[len(scores) // 2]
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.solve_part_one())

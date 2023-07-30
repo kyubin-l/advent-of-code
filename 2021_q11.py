@@ -3,6 +3,7 @@ from utils.base_solution import BaseSolution
 Q_NUM = 11
 YEAR = 2021
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,15 +23,15 @@ class Solution(BaseSolution):
     def solve_part_one(self, num_steps, part_1=True):
         def get_neighbors(i, j):
             n = [
-                (i-1, j-1),
-                (i-1, j),
-                (i-1, j+1),
-                (i, j-1),
-                (i, j+1),
-                (i+1, j-1),
-                (i+1, j),
-                (i+1, j+1),
-                ]
+                (i - 1, j - 1),
+                (i - 1, j),
+                (i - 1, j + 1),
+                (i, j - 1),
+                (i, j + 1),
+                (i + 1, j - 1),
+                (i + 1, j),
+                (i + 1, j + 1),
+            ]
             return n
 
         def in_bound(i, j):
@@ -58,8 +59,7 @@ class Solution(BaseSolution):
 
         def step():
             flashed = [
-                [False for _ in range(len(self.grid[0]))]
-                for _ in range(len(self.grid))
+                [False for _ in range(len(self.grid[0]))] for _ in range(len(self.grid))
             ]
             num_flashes = 0
             for i, row in enumerate(self.grid):
@@ -73,7 +73,6 @@ class Solution(BaseSolution):
 
             return num_flashes
 
-
         if part_1:
             total_flashes = 0
             for _ in range(num_steps):
@@ -81,7 +80,7 @@ class Solution(BaseSolution):
                 total_flashes += num_flashes
 
             return total_flashes
-            
+
         # Part 2
         else:
             i = 0
@@ -91,15 +90,15 @@ class Solution(BaseSolution):
                 i += 1
                 if num_flashes == grid_size:
                     self.print_grid()
-                    print(f'All octopuses will flash at step {i}')
+                    print(f"All octopuses will flash at step {i}")
                     return i
 
     def solve_part_two(self):
         self.load()
         return self.solve_part_one(None, False)
-    
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.solve_part_one(100))

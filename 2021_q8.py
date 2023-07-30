@@ -3,6 +3,7 @@ from utils.base_solution import BaseSolution
 Q_NUM = 8
 YEAR = 2021
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -11,7 +12,7 @@ class Solution(BaseSolution):
         self.data = []
         with open(self.filename) as f:
             for line in f.readlines():
-                pattern, output = line.strip().split('|')
+                pattern, output = line.strip().split("|")
                 pattern = pattern.split()
                 output = output.split()
                 self.data.append([pattern, output])
@@ -32,7 +33,7 @@ class Solution(BaseSolution):
         2: 5            7: 3
         3: 5            8: 7
         4: 4            9: 6
-        
+
         All 10 inputs in the beginning are unique
         if length is 5, and contains 7, must be a 3
         if length if 6, and contains a 3, must be 9
@@ -43,11 +44,12 @@ class Solution(BaseSolution):
         the last length 5 one will be a 2
 
         """
+
         def sort_string(s: str) -> str:
-            return ''.join(sorted(s))
+            return "".join(sorted(s))
 
         def issubstring(s1: str, s2: str) -> bool:
-            if(set([*s1]).issubset(set([*s2]))):
+            if set([*s1]).issubset(set([*s2])):
                 return True
             return False
 
@@ -66,7 +68,7 @@ class Solution(BaseSolution):
             # l = [2, 3, 4, 5, 5, 5, 6, 6, 6, 7]
             pattern, output = entry[0], entry[1]
             l = sorted(pattern, key=len)
-            
+
             mapping[1] = l[0]
             mapping[7] = l[1]
             mapping[4] = l[2]
@@ -80,13 +82,13 @@ class Solution(BaseSolution):
                     mapping[3] = val
                     len5.remove(val)
                     break
-            
+
             for val in len6:
                 if issubstring(mapping[3], val):
                     mapping[9] = val
                     len6.remove(val)
                     break
-            
+
             v1, v2 = len6[0], len6[1]
 
             if issubstring(mapping[7], v1):
@@ -105,7 +107,7 @@ class Solution(BaseSolution):
                 mapping[5] = v2
                 mapping[2] = v1
 
-            s = ''
+            s = ""
 
             for out in output:
                 for key, val in mapping.items():
@@ -117,7 +119,7 @@ class Solution(BaseSolution):
         return total
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
 

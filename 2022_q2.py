@@ -3,31 +3,16 @@ from utils.base_solution import BaseSolution
 Q_NUM = 2
 YEAR = 2022
 
+
 class Solution(BaseSolution):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.matching = {
-            'A': 'X',
-            'B': 'Y',
-            'C': 'Z'
-        }
-        self.points = {
-            'X': 1,
-            'Y': 2,
-            'Z': 3
-        }
+        self.matching = {"A": "X", "B": "Y", "C": "Z"}
+        self.points = {"X": 1, "Y": 2, "Z": 3}
         # X: Z -> X wins Z
-        self.wins = {
-            'X': 'Z',
-            'Y': 'X',
-            'Z': 'Y'
-        }
+        self.wins = {"X": "Z", "Y": "X", "Z": "Y"}
         # X : Y: X losses to Y
-        self.losses = {
-            'X': 'Y',
-            'Y': 'Z',
-            'Z': 'X'
-        }
+        self.losses = {"X": "Y", "Y": "Z", "Z": "X"}
 
     def load(self):
         self.games = []
@@ -61,12 +46,12 @@ class Solution(BaseSolution):
 
         for game in games:
             p1, p2 = game
-            if p2 == 'X':
+            if p2 == "X":
                 p2_new = self.wins[p1]
-            elif p2 == 'Y':
+            elif p2 == "Y":
                 p2_new = p1
                 total_points += 3
-            elif p2 == 'Z':
+            elif p2 == "Z":
                 p2_new = self.losses[p1]
                 total_points += 6
             total_points += self.points[p2_new]
@@ -74,7 +59,7 @@ class Solution(BaseSolution):
         return total_points
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sol = Solution(Q_NUM, YEAR)
     sol.load()
     print(sol.solve_part_one())
