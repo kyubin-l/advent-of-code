@@ -9,16 +9,16 @@ import (
 	"strconv"
 )
 
-func Solve_Q1() {
+func SolveQuesionOne() {
 	questionNo := 1
 	elf := load(questionNo)
-	mostCals := part_1(elf)
+	mostCals := partOne(elf)
 	fmt.Println("Part 1: ", mostCals)
-	sumMostThree := part_2(elf)
+	sumMostThree := partTwo(elf)
 	fmt.Println("Part 2: ", sumMostThree)
 }
 
-func part_1(elf [][]int) int {
+func partOne(elf [][]int) int {
 	var cur int
 	var max int
 	for _, cals := range elf {
@@ -33,7 +33,7 @@ func part_1(elf [][]int) int {
 	return max
 }
 
-func part_2(elf [][]int) int {
+func partTwo(elf [][]int) int {
 	sums := []int{}
 	for _, cals := range elf {
 		cur := 0
