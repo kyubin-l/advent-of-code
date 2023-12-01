@@ -25,7 +25,7 @@ class Solution(BaseSolution):
             sol += num
         return sol
 
-    def _get_nums_part_two(self, line: str) -> int:
+    def _get_num_part_two(self, line: str) -> int:
         nums = re.findall(self.pattern, line)
         first_digit = self.letters.get(nums[0], nums[0][0])
         second_digit = self.letters.get(nums[-1], nums[-1][-1])
@@ -47,7 +47,7 @@ class Solution(BaseSolution):
         sum = 0
         self.pattern = rf"(?=({'|'.join(self.letters.keys())}|\d+))"
         for line in input:
-            num = self._get_nums_part_two(line)
+            num = self._get_num_part_two(line)
             sum += num
         return sum
 
