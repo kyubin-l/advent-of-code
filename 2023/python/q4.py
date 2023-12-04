@@ -29,8 +29,8 @@ class Solution(BaseSolution):
 
     def part_two(self) -> int:
         cards = self.load()
+        # Start with one card each
         card_counts: dict[int, int] = defaultdict(lambda: 1)
-        # Start with 1 card number 1
         for i, card in enumerate(cards, 1):
             wins = self.get_winning_card_count(card)
             num_current_card = card_counts[i]
