@@ -6,7 +6,7 @@ from base_solution import BaseSolution
 
 class Solution(BaseSolution):
     def load(self) -> list[str]:
-        vals = []
+        vals: list[str] = []
         with open(self.filename) as f:
             for line in f.readlines():
                 line = line.rstrip()
