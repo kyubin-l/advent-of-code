@@ -84,6 +84,8 @@ class Solution(BaseSolution):
                 return desination_start + delta, range_length - delta
 
         possible_starts = [start for start in range_starts if start > source]
+        # no possible starts means we're beyond the largest value, so we can
+        # jump as much as we want
         if not possible_starts:
             jump = -1
         else:
@@ -117,7 +119,6 @@ class Solution(BaseSolution):
         # Land is the first index of mappings. Order this by the min value in land
         # for the humidity-to-location key
         _, humidity_to_location = mappings.popitem()
-        humidity_to_location.sort(key=lambda r: r[0])  # type: ignore
         # Reverse the other mappings (we want to go from soil -> seed)
         reversed_mappings = OrderedDict(reversed(list(mappings.items())))
 
