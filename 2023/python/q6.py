@@ -57,6 +57,7 @@ class Solution(BaseSolution):
         t1 = math.ceil(t1)
         t2 = math.floor(t2)
 
+        # Inclusive t1 and t2, so add 1
         return t2 - t1 + 1
 
 
