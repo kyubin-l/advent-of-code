@@ -74,8 +74,6 @@ class JokerHand(Hand):
 
         # Two pair and three of a kind, and full house and four of a kind have
         # the same number of unique.
-        # I don't think this matter for this situation given the joker would always
-        # go to the largest value.
         max_occurence_hand_one = max(hand_one.values())
         max_occurence_hand_two = max(hand_two.values())
         if max_occurence_hand_one != max_occurence_hand_two:
