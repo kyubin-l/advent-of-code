@@ -204,6 +204,5 @@ if __name__ == "__main__":
     assert test_sol.part_one() == 8
     print(sol.part_one())
 
-    print(test_sol.part_two())
     assert test_sol.part_two() == 10
     print(sol.part_two())
