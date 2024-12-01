@@ -3,9 +3,6 @@ from collections import Counter
 from src.utils import get_input_filename
 
 
-FILENAME = get_input_filename(__file__)
-
-
 def load_data(filename: str) -> tuple[list[int], list[int]]:
     left: list[int] = []
     right: list[int] = []
