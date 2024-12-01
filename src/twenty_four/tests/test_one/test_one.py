@@ -1,11 +1,11 @@
 from unittest import TestCase
 
 from src.twenty_four.one.main import part_one, part_two
-from src.utils import get_filename
+from src.utils import get_input_filename
 
 class TestDayOne(TestCase):
     def setUp(self) -> None:
-        self.filename = get_filename(__file__)
+        self.filename = get_input_filename(__file__)
         return super().setUp()
     
     def test_part_one(self) -> None:

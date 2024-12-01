@@ -1,9 +1,9 @@
 from collections import Counter
 
-from src.utils import get_filename
+from src.utils import get_input_filename
 
 
-FILENAME = get_filename(__file__)
+FILENAME = get_input_filename(__file__)
 
 
 def load_data(filename: str) -> tuple[list[int], list[int]]:
@@ -44,7 +44,7 @@ def part_two(filename: str) -> int:
 
 
 if __name__ == "__main__":
-    filename = get_filename(__file__)
+    filename = get_input_filename(__file__)
 
     print(part_one(filename))
     print(part_two(filename))
