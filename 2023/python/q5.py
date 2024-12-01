@@ -144,7 +144,9 @@ class Solution(BaseSolution):
                 )
                 if jump > 0:
                     jumps.append(jump)
-            in_range, jump = self.check_seed_in_range_and_value_to_seed_range(source, seeds)
+            in_range, jump = self.check_seed_in_range_and_value_to_seed_range(
+                source, seeds
+            )
             if jump > 0:
                 jumps.append(jump)
             if not in_range:

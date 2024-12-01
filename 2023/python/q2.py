@@ -9,7 +9,9 @@ class Solution(BaseSolution):
             strings = f.read().splitlines()
         return strings
 
-    def _process_game_part_one(self, game: str, limits: dict[str, int]) -> tuple[int, bool]:
+    def _process_game_part_one(
+        self, game: str, limits: dict[str, int]
+    ) -> tuple[int, bool]:
         """
         Determine if the game is possible given the limits
         Example game:
@@ -56,7 +58,7 @@ class Solution(BaseSolution):
                 continue
             id_sums += game_id
         return id_sums
-    
+
     def _get_game_power(self, game: str) -> int:
         # Game id and different rounds are irrelevant for this part - we just
         # need to know the largest occurance of the cubes for each color

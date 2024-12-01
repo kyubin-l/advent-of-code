@@ -77,7 +77,9 @@ class Solution(BaseSolution):
                 for col in range(num.start(), num.end()):
                     # Check if there are any gears adjacent
                     neighbors = set(Point(row, col).get_neighbors(rows, cols))
-                    gears_adjacent = neighbors.intersection(set(nums_adjacent_to_gear.keys()))
+                    gears_adjacent = neighbors.intersection(
+                        set(nums_adjacent_to_gear.keys())
+                    )
                     # If no gear or more than 1 gear
                     if len(gears_adjacent) != 1:
                         continue

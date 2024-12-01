@@ -9,7 +9,7 @@ class Solution(BaseSolution):
         with open(self.filename) as f:
             strings = f.read().splitlines()
         return strings
-    
+
     def get_winning_card_count(self, card: str) -> int:
         _, raw_numbers = card.split(":")
         nums = re.findall(r"[\d]+|\|", raw_numbers)
